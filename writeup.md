@@ -25,6 +25,7 @@ The goals / steps of this project are the following:
 [image10]: ./output_images/recover-test5.jpg "recover"
 [image11]: ./output_images/color_filter.jpg "color_filter"
 [image12]: ./output_images/lane_fit-test5.jpg "lane fit"
+[image13]: ./output_images/plottest5.jpg "recovered test5"
 [video1]: ./project_video.mp4 "Video"
 
 ## [Rubric](https://review.udacity.com/#!/rubrics/571/view) Points
@@ -89,24 +90,28 @@ This resulted in the following source and destination points:
 
 I verified that my perspective transform was working as expected by drawing the `src` and `dst` points onto a test image and its warped counterpart to verify that the lines appear parallel in the warped image.
 
-![warp image][image9]
+![bird eye image][image9]
 ![recover image][image10]
 
 #### 4. Describe how (and identify where in your code) you identified lane-line pixels and fit their positions with a polynomial?
 
 Then I did some other stuff and fit my lane lines with a 2nd order polynomial kinda like this:
 
-![alt text][image5]
+![lane fit][image12]
 
 #### 5. Describe how (and identify where in your code) you calculated the radius of curvature of the lane and the position of the vehicle with respect to center.
 
-I did this in lines # through # in my code in `my_other_file.py`
+I did this cell 6 where I copied from part 35 of material provided by lecture. It basiclly try to caculate lane fit basec on 2nd order polynomical function f(y)=Ay2+By+C and apply curvature function described http://www.intmath.com/applications-differentiation/8-radius-curvature.php
+
+The result of left lane fit is 2855.44424885 m and right lane fit is 1664.59075647 m of test5
+
 
 #### 6. Provide an example image of your result plotted back down onto the road such that the lane area is identified clearly.
 
-I implemented this step in lines # through # in my code in `yet_another_file.py` in the function `map_lane()`.  Here is an example of my result on a test image:
+I implemented this step in cell 7 where I implemented `overlay` funciton, it draw left and right fit 2nd polynomical line with fill polyfill as Green
+and then it overlay on top of original image with 30% of weight via `addWeighted`
 
-![lane fit][image12]
+![overlayed lane detection to test 5][image13]
 
 ---
 
@@ -114,7 +119,7 @@ I implemented this step in lines # through # in my code in `yet_another_file.py`
 
 #### 1. Provide a link to your final video output.  Your pipeline should perform reasonably well on the entire project video (wobbly lines are ok but no catastrophic failures that would cause the car to drive off the road!).
 
-Here's a [link to my video result](./project_video.mp4)
+Here's a [link to my video result](./test_video.mp4)
 
 ---
 
