@@ -23,6 +23,8 @@ The goals / steps of this project are the following:
 [image8]: ./test_images/test5.jpg "test5"
 [image9]: ./output_images/warped-test5.jpg "warp"
 [image10]: ./output_images/recover-test5.jpg "recover"
+[image11]: ./output_images/color_filter.jpg "color_filter"
+[image12]: ./output_images/lane_fit-test5.jpg "lane fit"
 [video1]: ./project_video.mp4 "Video"
 
 ## [Rubric](https://review.udacity.com/#!/rubrics/571/view) Points
@@ -56,7 +58,8 @@ I applied camera caliberation results from previous cell and apply to "test5" im
 
 #### 2. Describe how (and identify where in your code) you used color transforms, gradients or other methods to create a thresholded binary image.  Provide an example of a binary image result.
 I mainly use color threshold to generate binary image, where I tried to filter out non yellow and white on HSV color space. Alternatively, I choose to apply sobel based filter. Finally, the color based filter offers better result.
-The image shows bellow second cell with title "white & blue lane filter"
+
+![undistort test5 after color filter white and yellow][image11]
 
 #### 3. Describe how (and identify where in your code) you performed a perspective transform and provide an example of a transformed image.
 
@@ -103,7 +106,7 @@ I did this in lines # through # in my code in `my_other_file.py`
 
 I implemented this step in lines # through # in my code in `yet_another_file.py` in the function `map_lane()`.  Here is an example of my result on a test image:
 
-![alt text][image6]
+![lane fit][image12]
 
 ---
 
