@@ -127,4 +127,4 @@ Here's a [link to my video result](./test_video.mp4)
 
 #### 1. Briefly discuss any problems / issues you faced in your implementation of this project.  Where will your pipeline likely fail?  What could you do to make it more robust?
 
-Here I'll talk about the approach I took, what techniques I used, what worked and why, where the pipeline might fail and how I might improve it if I were going to pursue this project further.  
+I spent fair amount of time to determine if I should go HSL plus sobel filter approach or HSV and color based filter approach. I started with HSL and sobel approach as recommended in text, the result seems not quite satisfactory where the poly fit gives a drifted overlay on top of actual lane lines. So I started to use color based approach which assume yellow and white color filter works better. It works most of time as well as all six test images. The problem kicks in when there are cases where video may not find left and right lane fits. I decided to go for a primitive approach which takes previous found left and right fits curves and keep what it is if current frame can't update new values.
