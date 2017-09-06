@@ -58,7 +58,7 @@ I applied camera caliberation results from previous cell and apply to "test5" im
 ![undistort result of test5][image7]
 
 #### 2. Describe how (and identify where in your code) you used color transforms, gradients or other methods to create a thresholded binary image.  Provide an example of a binary image result.
-I mainly use color threshold to generate binary image, where I tried to filter out non yellow and white on HSV color space. Alternatively, I choose to apply sobel based filter. Finally, the color based filter offers better result.
+I mainly use color threshold to generate binary image, where I tried to filter out non yellow and white on HSV color space. I find using only sobel approach or color approach both yelt suboptimal results, so I decided to apply both within same function. The result seems much robust against color and shade
 
 ![undistort test5 after color filter white and yellow][image11]
 
@@ -127,4 +127,9 @@ Here's a [link to my video result](./test_video.mp4)
 
 #### 1. Briefly discuss any problems / issues you faced in your implementation of this project.  Where will your pipeline likely fail?  What could you do to make it more robust?
 
-I spent fair amount of time to determine if I should go HSL plus sobel filter approach or HSV and color based filter approach. I started with HSL and sobel approach as recommended in text, the result seems not quite satisfactory where the poly fit gives a drifted overlay on top of actual lane lines. So I started to use color based approach which assume yellow and white color filter works better. It works most of time as well as all six test images. The problem kicks in when there are cases where video may not find left and right lane fits. I decided to go for a primitive approach which takes previous found left and right fits curves and keep what it is if current frame can't update new values.
+I spent fair amount of time to determine if I should go HSL plus sobel filter approach or HSV and color based filter approach. I started with HSL and sobel approach as recommended in text, the result seems not quite satisfactory where the poly fit gives a drifted overlay on top of actual lane lines. So I started to use color based approach which assume yellow and white color filter works better. It works most of time as well as all six test images. The problem kicks in when there are cases where video may not find left and right lane fits. I decided to go for a primitive approach which takes previous found left and right fits curves and keep what it is if current frame can't update new values. Again, problem raise when road shade and light changes which affect color filter, I applied sobelx filter and enhance binary wrap with edge detection techniques. Suprisining, results seems much robust without future sanity check.
+
+The image gradient approach is very senstive towards lane and color of each frame. It doesn't build memory as human do when it looking at each frame. If some lane lines missing due to color fade or construction or snow, this pipeline will fail. If traffic jam that covers lane in front of camera, this will fail. As shown on hard challenge, when veichel take sharp turns, it produces bad results.(perspective transfer)
+
+I miss the CNN based approach once again. Instead of taking color and grident as sole input to render overlay, I plan to put it into a CNN or RNN network as features and let neural netwroks figure out best strategy.
+
